@@ -51,13 +51,12 @@ const check = (dispatch, getState) => {
     const bottomTop = topBottom + 100;
 
     if (birdY2 > 512 - 108) {
+        alert("You die.");
         dispatch({ type: types.GAME_OVER });
     }
 
     if (pipeLeft === 80) {
-        console.log("Before");
         dispatch({ type: types.SCORE });
-        console.log("After");
     }
 
     if (
@@ -66,7 +65,7 @@ const check = (dispatch, getState) => {
         (birdY2 <= topBottom - 50 || birdY2 >= bottomTop)
     ) {
         setTimeout(() => {
-            alert("You are die.");
+            alert("You die.");
             dispatch({ type: types.GAME_OVER });
         }, 30);
     }

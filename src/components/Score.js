@@ -8,7 +8,7 @@ const Score = ({ score }) => {
             style={{
                 position: "absolute",
                 top: 50,
-                left: 120,
+                left: 115,
                 zIndex: 10,
                 width: 100,
                 height: 100,
