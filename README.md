@@ -1,3 +1,10 @@
 # Flappy bird using ReactJS and Redux
 
-# Visit at https://nah-flappy-bird.github.io/react-flappy-bird
+## Visit the app at https://nah-flappy-bird.netlify.app/
+
+# Learn about ReactJS https://reactjs.org/
+
+# Learn more about Redux and Redux-thunk https://redux.js.org/
+
+
+
