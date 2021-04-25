@@ -15,7 +15,7 @@ function pipe(state = initialState.pipe, action) {
 
             return {
                 ...state,
-                pipes: [...state.pipes.slice(-100), { topHeight }],
+                pipes: [...state.pipes, { topHeight }],
             };
 
         case types.GAME_OVER:
