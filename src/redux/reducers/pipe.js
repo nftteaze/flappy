@@ -4,18 +4,18 @@ import initialState from "./initialState";
 function pipe(state = initialState.pipe, action) {
     switch (action.type) {
         case types.RUNNING:
-            if (!state.pipes.length) {
-                return state;
+            if (state.x < -100) {
+                return { ...state, x: 400 };
             }
 
-            return { ...state, x: state.x - 10 };
+            return { ...state, x: state.x - 5 };
 
         case types.GENERATE:
             const topHeight = Math.round(Math.random() * 200) + 40;
 
             return {
                 ...state,
-                pipes: [...state.pipes, { topHeight }],
+                topHeight,
             };
 
         case types.GAME_OVER:

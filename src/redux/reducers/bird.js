@@ -7,8 +7,7 @@ const bird = (state = initialState.bird, action) => {
         case types.FALL:
             return { ...state, y: state.y + 20, r: 0 };
         case types.FLY:
-            console.log({ state });
-            return { ...state, y: state.y - 100, r: -30 };
+            return { ...state, y: state.y - 80, r: -30 };
         case types.GAME_OVER:
             return initialState.bird;
         default:

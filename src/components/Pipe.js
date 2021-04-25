@@ -1,46 +1,40 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import TopPipeImg from "../images/pipe-top.png";
 import BottomPipeImg from "../images/pipe-bottom.png";
 import { connect } from "react-redux";
 
-const Pipe = ({ x, pipes }) => {
-    const topPipeStyle = (topHeight, x, i) => ({
+const Pipe = ({ x, topHeight }) => {
+    const topPipeStyle = {
         position: "absolute",
         top: 0,
-        left: x + i * 200,
+        left: x,
         width: 52,
         height: topHeight,
         background: `url(${TopPipeImg})`,
         backgroundPosition: "bottom",
-        transition: "left 300ms",
-    });
+    };
 
-    const bottomPipeStyle = (topHeight, x, i) => ({
+    const bottomPipeStyle = {
         position: "absolute",
         top: topHeight + 100,
-        left: x + i * 200,
+        left: x,
         width: 52,
         height: 512 - topHeight - 100,
         background: `url(${BottomPipeImg})`,
-        transition: "left 300ms",
-    });
+    };
 
     return (
         <div style={{ position: "relative" }}>
-            {pipes.map(({ topHeight }, i) => (
-                <div key={`pipe-${i}`} style={{ position: "relative" }}>
-                    <div style={topPipeStyle(topHeight, x, i)} />
-                    <div style={bottomPipeStyle(topHeight, x, i)} />
-                </div>
-            ))}
+            <div style={topPipeStyle} />
+            <div style={bottomPipeStyle} />
         </div>
     );
 };
 
 const mapStateToProps = ({ pipe }) => ({
     x: pipe.x,
-    pipes: pipe.pipes,
+    topHeight: pipe.topHeight,
 });
 
 const mapDispatchToProps = {};

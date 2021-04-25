@@ -2,10 +2,11 @@
 export default {
     game: {
         status: "",
+        score: 0,
     },
     pipe: {
-        x: 200,
-        pipes: [],
+        x: 300,
+        topHeight: 100,
     },
     bird: {
         y: 250,
