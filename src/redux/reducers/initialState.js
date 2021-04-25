@@ -1,9 +1,14 @@
 /* eslint-disable import/no-anonymous-default-export */
 export default {
-    game: null,
-    pipe: null,
+    game: {
+        status: "",
+    },
+    pipe: {
+        x: 200,
+        pipes: [],
+    },
     bird: {
         y: 250,
-        r: 0
-    }
-}
+        r: 0,
+    },
+};

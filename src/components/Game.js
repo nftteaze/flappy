@@ -1,45 +1,48 @@
-import React, {useEffect} from 'react'
-import {connect} from 'react-redux'
-import {fly} from '../redux/actions/bird'
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
+import { fly } from "../redux/actions/bird";
+import { start } from "../redux/actions/game";
 
-import Bird from './Bird';
-import Pipe from './Pipe';
-import Foreground from './Foreground';
+import Bird from "./Bird";
+import Pipe from "./Pipe";
+import Foreground from "./Foreground";
 
-import BgImg from '../images/bg.png';
+import BgImg from "../images/bg.png";
 
-const Game = ({fly}) => {
-
+const Game = ({ status, start, fly }) => {
     useEffect(() => {
         const handleKeyPress = (e) => {
             if (e.keyCode === 32) {
                 fly();
             }
-        }
-        document.addEventListener('keypress', handleKeyPress);
-    },)
+
+            if (status !== "playing") {
+                start();
+            }
+            console.log({ status });
+        };
+        document.addEventListener("keypress", handleKeyPress);
+    }, []);
 
     const gameStyle = {
-        position: 'relative',
+        position: "relative",
         width: 288,
         height: 512,
         background: `url(${BgImg})`,
-        overflow: 'hidden'
-    }
+        // overflow: "hidden",
+    };
 
     return (
-        <div style = {gameStyle}>
+        <div style={gameStyle}>
             <Bird />
-            <Foreground/>
-            <Pipe/>
+            <Foreground />
+            <Pipe />
         </div>
-    )
-}
+    );
+};
 
-const mapStateToProps = () => ({
-    
-})
+const mapStateToProps = ({ game }) => ({ status: game.status });
 
-const mapDispatchToProps = {fly}
+const mapDispatchToProps = { start, fly };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Game);
