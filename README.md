@@ -5,6 +5,3 @@
 ## Learn about ReactJS https://reactjs.org/
 
 ## Learn more about Redux and Redux-thunk https://redux.js.org/
-
-
-

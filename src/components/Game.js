@@ -32,6 +32,7 @@ const Game = ({ status, start, fly }) => {
 
     const gameStyle = {
         position: "relative",
+        margin: "auto",
         width: 288,
         height: 512,
         background: `url(${BgImg})`,

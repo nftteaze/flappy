@@ -59,7 +59,7 @@ const check = (dispatch, getState) => {
     }
 
     if (
-        pipeLeft <= birdX2 &&
+        pipeLeft <= birdX1 &&
         birdX2 <= pipeRight &&
         (birdY2 <= topBottom - 30 || birdY2 >= bottomTop)
     ) {
