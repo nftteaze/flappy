@@ -17,7 +17,8 @@ const Game = ({ status, start, fly }) => {
 
     useEffect(() => {
         const handleKeyPress = (e) => {
-            if (e.keyCode === 32) {
+            console.log(e);
+            if (e.keyCode === 32 || e.type === "click") {
                 fly();
             }
 
@@ -26,6 +27,7 @@ const Game = ({ status, start, fly }) => {
             }
         };
         document.addEventListener("keypress", handleKeyPress);
+        document.addEventListener("click", handleKeyPress);
     }, []);
 
     const gameStyle = {

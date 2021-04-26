@@ -2,7 +2,6 @@ import React from "react";
 import { connect } from "react-redux";
 
 const Score = ({ score }) => {
-    console.log(score);
     return (
         <div
             style={{

@@ -23,11 +23,10 @@ export function start() {
             pipeMoving = setInterval(() => {
                 dispatch(running());
 
-                check(dispatch, getState);
-
                 if (getState().pipe.x === -50) {
                     dispatch(generate());
                 }
+                check(dispatch, getState);
             }, 40);
 
             dispatch({ type: "START" });
@@ -62,11 +61,9 @@ const check = (dispatch, getState) => {
     if (
         pipeLeft <= birdX2 &&
         birdX2 <= pipeRight &&
-        (birdY2 <= topBottom - 50 || birdY2 >= bottomTop)
+        (birdY2 <= topBottom - 30 || birdY2 >= bottomTop)
     ) {
-        setTimeout(() => {
-            alert("You die.");
-            dispatch({ type: types.GAME_OVER });
-        }, 30);
+        alert("You die.");
+        dispatch({ type: types.GAME_OVER });
     }
 };
