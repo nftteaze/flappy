@@ -13,7 +13,16 @@ import UserForm from "./UserForm";
 
 import BgImg from "../images/bg.png";
 
-const Game = ({ status, start, fly, username, score, addScore, getScores }) => {
+const Game = ({
+    status,
+    start,
+    fly,
+    username,
+    score,
+    addScore,
+    getScores,
+    resetScore,
+}) => {
     if (status === "game-over") {
         deleteInterval();
         addScore();
