@@ -26,8 +26,8 @@ const Game = ({
     if (status === "game-over") {
         deleteInterval();
         addScore();
-        resetScore();
         getScores();
+        resetScore();
     }
 
     useEffect(() => {
