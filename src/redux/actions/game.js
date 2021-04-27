@@ -11,6 +11,10 @@ export function deleteInterval() {
     clearInterval(pipeMoving);
 }
 
+export function resetScore() {
+    return { type: types.RESET_SCORE };
+}
+
 export function start() {
     return (dispatch, getState) => {
         const { status } = getState().game;

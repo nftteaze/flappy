@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 import TopPipeImg from "../images/pipe-top.png";
 import BottomPipeImg from "../images/pipe-bottom.png";

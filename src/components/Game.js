@@ -1,56 +1,71 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { fly } from "../redux/actions/bird";
-import { start, deleteInterval } from "../redux/actions/game";
+import { start, deleteInterval, resetScore } from "../redux/actions/game";
+import { addScore, getScores } from "../redux/actions/leaderboard";
 
 import Bird from "./Bird";
 import Pipe from "./Pipe";
 import Foreground from "./Foreground";
 import Score from "./Score";
+import Leaderboard from "./Leaderboard";
+import UserForm from "./UserForm";
 
 import BgImg from "../images/bg.png";
 
-const Game = ({ status, start, fly }) => {
+const Game = ({ status, start, fly, username, score, addScore, getScores }) => {
     if (status === "game-over") {
         deleteInterval();
+        addScore();
+        resetScore();
+        getScores();
     }
 
     useEffect(() => {
         const handleKeyPress = (e) => {
-            console.log(e);
-            if (e.keyCode === 32 || e.type === "click") {
+            if ((e.keyCode === 32 || e.type === "click") && username !== null) {
                 fly();
             }
 
-            if (status !== "playing") {
+            if (status !== "playing" && username !== null) {
                 start();
             }
         };
         document.addEventListener("keypress", handleKeyPress);
         document.addEventListener("click", handleKeyPress);
-    }, []);
+    }, [username]);
 
     const gameStyle = {
         position: "relative",
-        margin: "auto",
         width: 288,
         height: 512,
         background: `url(${BgImg})`,
         overflow: "hidden",
+        borderRadius: 10,
     };
 
     return (
-        <div style={gameStyle}>
-            <Bird />
-            <Foreground />
-            <Pipe />
-            <Score />
-        </div>
+        <>
+            <div style={{ position: "absolute", display: "flex" }}>
+                <div style={gameStyle}>
+                    <Bird />
+                    <Foreground />
+                    <Pipe />
+                    <Score />
+                    {status === "" && !username && <UserForm />}
+                </div>
+                <Leaderboard />
+            </div>
+        </>
     );
 };
 
-const mapStateToProps = ({ game }) => ({ status: game.status });
+const mapStateToProps = ({ game, db }) => ({
+    status: game.status,
+    score: game.score,
+    username: db.username,
+});
 
-const mapDispatchToProps = { start, fly };
+const mapDispatchToProps = { start, fly, getScores, addScore, resetScore };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Game);

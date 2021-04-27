@@ -12,4 +12,8 @@ export default {
         y: 250,
         r: 0,
     },
+    db: {
+        username: null,
+        scores: [],
+    },
 };

@@ -4,7 +4,6 @@ import App from "./App";
 
 import { Provider as ReduxProvider } from "react-redux";
 import configureStore from "./redux/index";
-import initialState from "./redux/reducers/initialState";
 
 const store = configureStore();
 
