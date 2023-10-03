@@ -48,12 +48,15 @@ const Game = ({ status, start, fly, username, resetScore }) => {
 
     const containerStyle = {
         display: "flex",
-        position: "relative",
+        position: "absolute",
+        top: "50%", // Center the game vertically
+        left: "50%", // Center the game horizontally
+        transform: "translate(-50%, -50%)", // Center the game both vertically and horizontally
     };
 
     const leaderboardStyle = {
-        width: "200px", // Adjust the width of the leaderboard
-        height: "400px", // Adjust the height of the leaderboard
+        width: "300px", // Adjust the width of the leaderboard
+        height: "512px", // Adjust the height of the leaderboard
         marginLeft: "20px", // Adjust the margin according to your layout
     };
 
