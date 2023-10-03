@@ -2,31 +2,18 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { fly } from "../redux/actions/bird";
 import { start, deleteInterval, resetScore } from "../redux/actions/game";
-import { addScore, getScores } from "../redux/actions/leaderboard";
 
 import Bird from "./Bird";
 import Pipe from "./Pipe";
 import Foreground from "./Foreground";
 import Score from "./Score";
-import Leaderboard from "./Leaderboard";
 import UserForm from "./UserForm";
 
 import BgImg from "../images/bg.png";
 
-const Game = ({
-    status,
-    start,
-    fly,
-    username,
-    score,
-    addScore,
-    getScores,
-    resetScore,
-}) => {
+const Game = ({ status, start, fly, username, resetScore }) => {
     if (status === "game-over") {
         deleteInterval();
-        addScore();
-        getScores();
         resetScore();
     }
 
@@ -42,7 +29,13 @@ const Game = ({
         };
         document.addEventListener("keypress", handleKeyPress);
         document.addEventListener("click", handleKeyPress);
-    }, [username]);
+
+        // Clean up event listeners when the component unmounts
+        return () => {
+            document.removeEventListener("keypress", handleKeyPress);
+            document.removeEventListener("click", handleKeyPress);
+        };
+    }, [username, status, fly, start]);
 
     const gameStyle = {
         position: "relative",
@@ -63,7 +56,6 @@ const Game = ({
                     <Score />
                     {status === "" && !username && <UserForm />}
                 </div>
-                <Leaderboard />
             </div>
         </>
     );
@@ -71,10 +63,9 @@ const Game = ({
 
 const mapStateToProps = ({ game, db }) => ({
     status: game.status,
-    score: game.score,
     username: db.username,
 });
 
-const mapDispatchToProps = { start, fly, getScores, addScore, resetScore };
+const mapDispatchToProps = { start, fly, resetScore };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Game);
