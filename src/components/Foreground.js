@@ -7,7 +7,7 @@ const Foreground = () => {
     const foregroundStyle = {
         position: 'absolute',
         bottom: 0,
-        width: 288,
+        width: 800,
         height: 108,
         background: `url(${FgImage})`
     }

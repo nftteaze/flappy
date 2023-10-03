@@ -39,11 +39,11 @@ const Game = ({ status, start, fly, username, resetScore }) => {
 
     const gameStyle = {
         position: "relative",
-        width: 288,
+        width: 800,
         height: 512,
         background: `url(${BgImg})`,
         overflow: "hidden",
-        borderRadius: 10,
+        borderRadius: 15,
     };
 
     return (
