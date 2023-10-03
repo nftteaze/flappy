@@ -1,51 +1,39 @@
-import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
+import React from "react";
+import "./Leaderboard.css"; // Import Leaderboard styles
 
-import "./Leaderboard.css";
+const Leaderboard = () => {
+  // Sample leaderboard data
+  const leaderboardData = [
+    { name: "Player 1", score: 100 },
+    { name: "Player 2", score: 90 },
+    { name: "Player 3", score: 80 },
+    // Add more leaderboard data as needed
+  ];
 
-const Leaderboard = ({ status, scores }) => {
-    let [sortedScores, setSortedScores] = useState([]);
-    useEffect(() => {
-        console.log("this is called");
-        setSortedScores(
-            scores
-                .sort((a, b) => b.score - a.score)
-                .filter((e, index) => index % 2 === 0)
-                .slice(0, 5)
-        );
-    }, [scores]);
-
-    return (
-        <>
-            <div class="container">
-                <div class="leaderboard">
-                    <div class="head">
-                        <i class="fas fa-crown"></i>
-                        <h1>&nbsp;Highest Scores </h1>
-                    </div>
-                    <div class="body">
-                        <ol>
-                            {sortedScores?.map((score, id) => {
-                                return (
-                                    <li key={`scores-${id}`}>
-                                        <mark>{score.username}</mark>
-                                        <small>{score.score}</small>
-                                    </li>
-                                );
-                            })}
-                        </ol>
-                    </div>
-                </div>
-            </div>
-        </>
-    );
+  return (
+    <div className="container">
+      <div className="leaderboard">
+        <div className="head">
+          <h1>Leaderboard</h1>
+        </div>
+        <div className="body">
+          <ol>
+            {leaderboardData.map((player, index) => (
+              <li key={index}>
+                <mark>{player.name}</mark>
+                <span>{player.score}</span>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </div>
+      <div className="blog">
+        <a href="https://example.com" target="_blank" rel="noopener noreferrer">
+          Blog Post
+        </a>
+      </div>
+    </div>
+  );
 };
 
-const mapStateToProps = ({ game, db }) => ({
-    status: game.status,
-    scores: db.scores,
-});
-
-const mapDispatchToProps = {};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Leaderboard);
+export default Leaderboard;
